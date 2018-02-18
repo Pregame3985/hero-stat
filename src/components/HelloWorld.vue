@@ -64,7 +64,7 @@ export default {
         data: []
       })
     }
-    request.get('http://api.etherscan.io/api?module=account&action=txlist&address=0xd0792aC0de7Ef31197C5f452B21A34389eCc725f&startblock=5107373&endblock=99999999&sort=asc&apikey=29F67QW7J7XD6I6M3IVMJ3Z94J9XGIZGQB')
+    request.get('https://api.etherscan.io/api?module=account&action=txlist&address=0xd0792aC0de7Ef31197C5f452B21A34389eCc725f&startblock=5107373&endblock=99999999&sort=asc&apikey=29F67QW7J7XD6I6M3IVMJ3Z94J9XGIZGQB')
       .set('Accept', 'application/json')
       .then((data) => {
         if (data.body.message === 'OK') {
