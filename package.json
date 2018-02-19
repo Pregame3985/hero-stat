@@ -15,7 +15,6 @@
     "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "etherscan-api": "^4.0.0",
     "superagent": "^3.8.2",
     "vue": "^2.5.2",
     "vue-echarts": "^3.0.2",

@@ -6,6 +6,8 @@
 import ECharts from 'vue-echarts/components/ECharts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
+import 'echarts/lib/component/title'
 import request from 'superagent'
 
 export default {
@@ -21,7 +23,18 @@ export default {
       '0xd96a094a0000000000000000000000000000000000000000000000000000000000000003',
       '0xd96a094a0000000000000000000000000000000000000000000000000000000000000004',
       '0xd96a094a0000000000000000000000000000000000000000000000000000000000000005',
-      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000006'
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000006',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000007',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000008',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000009',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000010',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000011',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000012',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000013',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000014',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000015',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000016',
+      '0xd96a094a0000000000000000000000000000000000000000000000000000000000000109'
     ]
     const names = [
       '宋江',
@@ -29,9 +42,19 @@ export default {
       '无用',
       '公孙胜',
       '关胜',
-      '林冲'
+      '林冲',
+      '秦明',
+      '呼延灼',
+      '花荣',
+      '柴进',
+      '李应',
+      '朱仝',
+      '鲁智深',
+      '武松',
+      '董平',
+      '张清',
+      '蔡京'
     ]
-    const lineColors = ['#5793f3', '#d14a61', '#675bba', '#000000', '#4f0ad1', '#80ba36']
     const series = []
 
     for (let i = 0; i < names.length; i++) {
@@ -43,7 +66,7 @@ export default {
         axisLine: {
           onZero: false,
           lineStyle: {
-            color: lineColors[i]
+            color: '#' + this.intToRGB(this.hashCode(names[i]))
           }
         },
         axisPointer: {
@@ -81,7 +104,7 @@ export default {
               for (let i = 0; i < ids.length; i++) {
                 if (e.input === ids[i]) {
                   xAxises[i].data.push('')
-                  series[i].data.push((e.value) / 10000000000000000)
+                  series[i].data.push((e.value) / 1000000000000000000)
                 }
               }
             }
@@ -106,6 +129,24 @@ export default {
         },
         series: series
       }
+    }
+  },
+  methods: {
+
+    hashCode (str) { // java String#hashCode
+      let hash = 0
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash)
+      }
+      return hash
+    },
+
+    intToRGB (i) {
+      let c = (i & 0x00FFFFFF)
+        .toString(16)
+        .toUpperCase()
+
+      return '00000'.substring(0, 6 - c.length) + c
     }
   }
 }
